@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsFileMusicFill } from "react-icons/bs";
 const Navbar = () => {
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState("home");
   return (
     <header>
       <nav className="bg-gray-700 text-white">
@@ -17,7 +17,7 @@ const Navbar = () => {
               <ul className="flex space-x-4">
                 <li
                   className={`${
-                    active === "home" ? "text-blue-600" : "text-secondary"
+                    active === "home" ? "text-[#6C63FF]" : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
                   onClick={() => setActive("home")}
                 >
@@ -25,7 +25,7 @@ const Navbar = () => {
                 </li>
                 <li
                   className={`${
-                    active === "products" ? "text-blue-600" : "text-secondary"
+                    active === "products" ? "text-[#6C63FF]" : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
                   onClick={() => setActive("products")}
                 >
@@ -33,7 +33,7 @@ const Navbar = () => {
                 </li>
                 <li
                   className={`${
-                    active === "contact" ? "text-blue-600" : "text-secondary"
+                    active === "contact" ? "text-[#6C63FF]" : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
                   onClick={() => setActive("contact")}
                 >
@@ -41,7 +41,7 @@ const Navbar = () => {
                 </li>
                 <li
                   className={`${
-                    active === "about" ? "text-blue-600" : "text-secondary"
+                    active === "about" ? "text-[#6C63FF]" : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
                   onClick={() => setActive("about")}
                 >
