@@ -1,11 +1,28 @@
 import { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
-const CategoryComponent = ({ name, data }) => {
+const CategoryComponent = ({ name, data, handleClick }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const toggleComponent = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleCategoryClick = (categoryId) => {
+    const updatedCategories = [...selectedCategories];
+
+    if (updatedCategories.includes(categoryId)) {
+      // If the category is already selected, remove it
+      const index = updatedCategories.indexOf(categoryId);
+      updatedCategories.splice(index, 1);
+    } else {
+      // If the category is not selected, add it
+      updatedCategories.push(categoryId);
+    }
+
+    setSelectedCategories(updatedCategories);
+    handleClick(updatedCategories);
   };
 
   return (
@@ -25,14 +42,22 @@ const CategoryComponent = ({ name, data }) => {
       </button>
       <div
         className={`transition-all duration-300 ${
-          isOpen ? "max-h-48" : "max-h-0"
-        } overflow-hidden`}
+          isOpen ? "h-full" : "max-h-0"
+        } `}
       >
         {isOpen && (
           <div className="flex flex-wrap">
             {data.map((category) => (
               <div key={category.id || category} className="mr-2 mb-2">
-                <button className="border border-gray-300 rounded-md px-2 py-1 bg-gray-900 text-white hover:bg-blue-600 hover:border-blue-600">
+                <button
+                  className={`text-white rounded-md px-2 py-1 hover:bg-blue-600 ${
+                    selectedCategories.includes(category.id) ||
+                    selectedCategories.includes(category)
+                      ? "bg-blue-600"
+                      : "bg-gray-900"
+                  }`}
+                  onClick={() => handleCategoryClick(category.id)}
+                >
                   {category.name || category}
                 </button>
               </div>

@@ -1,5 +1,5 @@
-const MovieApp = ({ movie }) => {
-  const { title, poster_path, vote_average, vote_count } = movie;
+const MovieCard = ({ movie }) => {
+  const { title, poster_path, vote_average, name } = movie;
 
   const getStarRating = () => {
     const rating = Math.round(vote_average / 2);
@@ -22,7 +22,7 @@ const MovieApp = ({ movie }) => {
     }
 
     return (
-      <div className="flex items-center mb-2">
+      <div className="flex items-center mt-auto">
         {stars}
         <span className="text-gray-500 text-sm ml-2">
           {Math.round(vote_average * 10) / 10} stars
@@ -32,15 +32,18 @@ const MovieApp = ({ movie }) => {
   };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800">
-      <img
-        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-        alt={title}
-        className="w-full h-auto object-cover"
-      />
-      <div className="px-6 py-4">
+    <div className="flex flex-col max-w-xs rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800">
+      <div className="h-[300px] w-auto overflow-hidden">
+        <img
+          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+          alt={title || name}
+          className="w-full h-full object-fill"
+        />
+      </div>
+
+      <div className="px-4 py-2">
         <div className="font-bold text-xl mb-2 text-gray-800 dark:text-white">
-          {title}
+          {title || name}
         </div>
         {getStarRating()}
       </div>
@@ -48,4 +51,4 @@ const MovieApp = ({ movie }) => {
   );
 };
 
-export default MovieApp;
+export default MovieCard;
