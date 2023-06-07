@@ -7,6 +7,7 @@ import MovieHorizontalCard from "../components/MovieHorizontalCard";
 import Loading from "../components/Loading";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import Pagination from "../components/Pagination";
+import { useAppContext } from "../context/appContext";
 
 const Movies = () => {
   const [genres, setGenres] = useState([]);
@@ -18,6 +19,8 @@ const Movies = () => {
   const [search, setSearch] = useState("");
   const [selectedCategories, setCategories] = useState([]);
   const [selectedGenres, setselectedGenres] = useState([]);
+
+  const { genresArr, categoriesArr } = useAppContext();
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -61,10 +64,17 @@ const Movies = () => {
     setLoading(true);
     let url = `discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
 
+    // if (categoriesArr.includes("TV Shows")) {
+    // url = `discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc`;
+    //}
+
     if (search) {
-      url = `search/multi?query=${encodeURIComponent(
-        search
-      )}&include_adult=false&language=en-US&page=1`;
+      url = `search/multi?query=${encodeURIComponent(search)}`;
+    }
+
+    if (genresArr.length > 0) {
+      const genreIds = genresArr.map((genre) => genre).join(",");
+      url += `&with_genres=${genreIds}`;
     }
 
     const { data } = await authFetch.get(url);
@@ -78,7 +88,7 @@ const Movies = () => {
   useEffect(() => {
     getGenres();
     getData();
-  }, [page, search]);
+  }, [page, search, genresArr, categoriesArr]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -96,11 +106,7 @@ const Movies = () => {
   return (
     <div className="flex h-screen">
       <div className="w-1/6">
-        <Filter
-          genres={genres}
-          handleChange={handleSearch}
-          handleClick={handleCategory}
-        />
+        <Filter genres={genres} handleChange={handleSearch} />
       </div>
       <div
         className="w-3/4 mt-5 ml-5  overflow-y-auto no-scrollbar"

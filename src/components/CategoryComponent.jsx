@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
-const CategoryComponent = ({ name, data, handleClick }) => {
+const CategoryComponent = ({ name, data, genreArr, categoryArr }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -22,7 +22,22 @@ const CategoryComponent = ({ name, data, handleClick }) => {
     }
 
     setSelectedCategories(updatedCategories);
-    handleClick(updatedCategories);
+    if (
+      updatedCategories.includes("TV Shows") ||
+      updatedCategories.includes("Movies")
+    ) {
+      // Handle special categories like "TV Shows" and "Movies"
+      const filteredCategories = updatedCategories.filter(
+        (category) => category === "TV Shows" || category === "Movies"
+      );
+      categoryArr(filteredCategories);
+      return;
+    } else {
+      categoryArr([]);
+    }
+    genreArr(updatedCategories);
+
+    console.log(updatedCategories);
   };
 
   return (
@@ -56,7 +71,7 @@ const CategoryComponent = ({ name, data, handleClick }) => {
                       ? "bg-blue-600"
                       : "bg-gray-900"
                   }`}
-                  onClick={() => handleCategoryClick(category.id)}
+                  onClick={() => handleCategoryClick(category.id || category)}
                 >
                   {category.name || category}
                 </button>

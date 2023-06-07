@@ -1,10 +1,20 @@
+import { useAppContext } from "../context/appContext";
 import CategoryComponent from "./CategoryComponent";
 import Loading from "./Loading";
 import SearchField from "./SearchField";
-function Filter({ genres, handleChange, handleClick }) {
-  const altcategories = ["All", "Movies", "TV Shows"];
+function Filter({ genres, handleChange }) {
+  const { filterGenres, filterCategories } = useAppContext();
 
-  const trending = ["All", "Movies", "TV Shows"];
+  const altcategories = ["Movies", "TV Shows"];
+
+  const trending = ["Movies", "TV Shows"];
+
+  const handleGenre = (arr) => {
+    filterGenres(arr);
+  };
+  const handleCategory = (arr) => {
+    filterCategories(arr);
+  };
 
   return (
     <div className="flex flex-col bg-gray-800 p-4 text-white overflow-y-clip">
@@ -13,9 +23,19 @@ function Filter({ genres, handleChange, handleClick }) {
       <CategoryComponent
         name="Category"
         data={altcategories}
-        handleClick={handleClick}
+        categoryArr={handleCategory}
+        genreArr={handleGenre}
       />
-      {genres ? <CategoryComponent name="Genres" data={genres} /> : <Loading />}
+      {genres ? (
+        <CategoryComponent
+          name="Genres"
+          data={genres}
+          genreArr={handleGenre}
+          categoryArr={handleCategory}
+        />
+      ) : (
+        <Loading />
+      )}
       <CategoryComponent name="Trending" data={trending} />
 
       <button className="bg-blue-600 text-white rounded-md px-4 py-2 hover:bg-blue-700">

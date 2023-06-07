@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { BsFileMusicFill } from "react-icons/bs";
+import { BiCameraMovie } from "react-icons/bi";
+import { useAppContext } from "../context/appContext";
 const Navbar = () => {
+  const { setLocation, location } = useAppContext();
   const [active, setActive] = useState("home");
   return (
     <header>
@@ -9,41 +11,43 @@ const Navbar = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <BsFileMusicFill size={"2em"} />
-              <div className="text-xl font-bold">Musify</div>
+              <BiCameraMovie size={"2em"} />
+              <div className="text-xl font-bold">Moviefy</div>
             </div>
 
             <div>
               <ul className="flex space-x-4">
                 <li
                   className={`${
-                    active === "home" ? "text-[#6C63FF]" : "text-secondary"
+                    location === "home" ? "text-[#6C63FF]" : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
-                  onClick={() => setActive("home")}
+                  onClick={() => setLocation("home")}
                 >
                   <Link to="/">Home</Link>
                 </li>
                 <li
                   className={`${
-                    active === "products" ? "text-[#6C63FF]" : "text-secondary"
+                    location === "products"
+                      ? "text-[#6C63FF]"
+                      : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
-                  onClick={() => setActive("products")}
+                  onClick={() => setLocation("products")}
                 >
                   <Link to="/products">Products</Link>
                 </li>
                 <li
                   className={`${
-                    active === "contact" ? "text-[#6C63FF]" : "text-secondary"
+                    location === "contact" ? "text-[#6C63FF]" : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
-                  onClick={() => setActive("contact")}
+                  onClick={() => setLocation("contact")}
                 >
                   <Link to="/contact">Contact</Link>
                 </li>
                 <li
                   className={`${
-                    active === "about" ? "text-[#6C63FF]" : "text-secondary"
+                    location === "about" ? "text-[#6C63FF]" : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
-                  onClick={() => setActive("about")}
+                  onClick={() => setLocation("about")}
                 >
                   <Link to="/about">About</Link>
                 </li>
