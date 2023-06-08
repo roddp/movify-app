@@ -23,7 +23,7 @@ const Navbar = () => {
                   } hover:text-blue-200 cursor-pointer`}
                   onClick={() => setLocation("home")}
                 >
-                  <Link to="/">Home</Link>
+                  <Link to="/movify-app">Home</Link>
                 </li>
                 <li
                   className={`${

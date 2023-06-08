@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Navbar></Navbar>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/movify-app" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Movies />} />
           <Route path="/contact" element={<Contact />} />

@@ -19,7 +19,7 @@ const Contact = () => {
               <FaLinkedin />
             </a>
             <a
-              href="mailto:your-email@example.com"
+              href="mailto:rodrigodomingospereira99@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-3xl mr-4 hover:text-purple-500"
@@ -27,7 +27,7 @@ const Contact = () => {
               <FaEnvelope />
             </a>
             <a
-              href="https://www.your-portfolio-website.com"
+              href="https://roddp.github.io/portfolio-web/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-3xl hover:text-purple-500"
