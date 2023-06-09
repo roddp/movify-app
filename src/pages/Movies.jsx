@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import Pagination from "../components/Pagination";
 import { useAppContext } from "../context/appContext";
+import { Link } from "react-router-dom";
 
 const Movies = () => {
   const [genres, setGenres] = useState([]);
@@ -142,11 +143,13 @@ const Movies = () => {
             <Loading />
           ) : viewType === "grid" ? (
             movies?.map((movie) => (
-              <MovieHorizontalCard
-                key={movie.id}
-                movie={movie}
-                genres={genres}
-              />
+              <Link key={movie.id} to={`/movies/${movie.id}`}>
+                <MovieHorizontalCard
+                  key={movie.id}
+                  movie={movie}
+                  genres={genres}
+                />
+              </Link>
             ))
           ) : (
             movies?.map((movie) => (

@@ -23,3 +23,30 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+.circle-rating {
+  width: 100px;
+  height: 100px;
+  background-color: #1a202c; /* Replace with your desired background color, e.g., bg-grey-900 */
+
+  border-radius: 50%; /* Ensure the element is a perfect circle */
+}
+
+.circle-rating__background {
+  fill: none;
+  stroke: none; /* Remove the background stroke */
+}
+
+.circle-rating__bar {
+  fill: none;
+  stroke: #6c63ff;
+  stroke-width: 5;
+  stroke-linecap: round; /* Ensure the stroke has rounded ends */
+
+}
+
+.circle-rating__text {
+  font-size: 20px;
+  fill: #6c63ff;
+  font-weight: bold;
+}

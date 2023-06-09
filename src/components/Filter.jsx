@@ -17,7 +17,7 @@ function Filter({ genres, handleChange }) {
   };
 
   return (
-    <div className="flex flex-col bg-gray-800 p-4 text-white overflow-y-clip">
+    <div className="flex flex-col bg-gray-800 p-4 text-white overflow-y-auto max-h-full">
       <h2 className="text-xl font-bold mb-4">Filter</h2>
       <SearchField handleChange={handleChange} />
       <CategoryComponent

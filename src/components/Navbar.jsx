@@ -27,13 +27,11 @@ const Navbar = () => {
                 </li>
                 <li
                   className={`${
-                    location === "products"
-                      ? "text-[#6C63FF]"
-                      : "text-secondary"
+                    location === "movies" ? "text-[#6C63FF]" : "text-secondary"
                   } hover:text-blue-200 cursor-pointer`}
-                  onClick={() => setLocation("products")}
+                  onClick={() => setLocation("movies")}
                 >
-                  <Link to="/products">Products</Link>
+                  <Link to="/movies">Movies</Link>
                 </li>
                 <li
                   className={`${

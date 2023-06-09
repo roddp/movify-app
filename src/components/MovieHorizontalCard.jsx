@@ -50,7 +50,7 @@ const MovieHorizontalCard = ({ movie, genres }) => {
   };
 
   return (
-    <div className="flex bg-gray-800 shadow-md rounded p-4 mb-5">
+    <div className="flex bg-gray-800 shadow-md rounded p-4 mb-5 hover:text-[#6C63FF]">
       <div className="min-h-max max-w-[150px] mr-4">
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
