@@ -1,19 +1,18 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BiCameraMovie } from "react-icons/bi";
 import { useAppContext } from "../context/appContext";
 const Navbar = () => {
   const { setLocation, location } = useAppContext();
-  const [active, setActive] = useState("home");
+
   return (
     <header>
       <nav className="bg-gray-700 text-white">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
+            <Link to="/movies" className="flex items-center">
               <BiCameraMovie size={"2em"} />
               <div className="text-xl font-bold">Moviefy</div>
-            </div>
+            </Link>
 
             <div>
               <ul className="flex space-x-4">

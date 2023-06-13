@@ -19,27 +19,12 @@ const Movies = () => {
   const [containerHeight, setContainerHeight] = useState(0);
   const [search, setSearch] = useState("");
   const [selectedCategories, setCategories] = useState([]);
-  const [selectedGenres, setselectedGenres] = useState([]);
 
   const { genresArr, categoriesArr } = useAppContext();
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
     setPage(1);
-  };
-
-  const handleCategory = (e) => {
-    const selectedCategory = e.target.innerHTML;
-    setCategories((prevCategories) => {
-      if (prevCategories.includes(selectedCategory)) {
-        return prevCategories.filter(
-          (category) => category !== selectedCategory
-        );
-      } else {
-        return prevCategories.concat(selectedCategory);
-      }
-    });
-    console.log(selectedCategories);
   };
 
   const authFetch = axios.create({
@@ -153,7 +138,9 @@ const Movies = () => {
             ))
           ) : (
             movies?.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} genres={genres} />
+              <Link key={movie.id} to={`/movies/${movie.id}`}>
+                <MovieCard key={movie.id} movie={movie} genres={genres} />
+              </Link>
             ))
           )}
         </div>

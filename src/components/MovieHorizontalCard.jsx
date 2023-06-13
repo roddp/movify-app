@@ -3,6 +3,7 @@ const MovieHorizontalCard = ({ movie, genres }) => {
     title,
     poster_path,
     vote_average,
+    vote_count,
     name,
     overview,
     release_date,
@@ -32,9 +33,7 @@ const MovieHorizontalCard = ({ movie, genres }) => {
     return (
       <div className="flex items-center">
         {stars}
-        <span className="text-gray-500 text-sm ml-2">
-          {Math.round(vote_average * 10) / 10} stars
-        </span>
+        <span className="text-gray-500 text-sm ml-2">{vote_count} reviews</span>
       </div>
     );
   };
@@ -51,11 +50,11 @@ const MovieHorizontalCard = ({ movie, genres }) => {
 
   return (
     <div className="flex bg-gray-800 shadow-md rounded p-4 mb-5 hover:text-[#6C63FF]">
-      <div className="min-h-max max-w-[150px] mr-4">
+      <div className=" mr-4">
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           alt={title}
-          className="w-full h-full object-scale-down"
+          className="max-w-[150px] h-auto object-contain"
         />
       </div>
       <div className="flex flex-col">

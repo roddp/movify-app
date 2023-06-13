@@ -1,5 +1,5 @@
 const MovieCard = ({ movie }) => {
-  const { title, poster_path, vote_average, name } = movie;
+  const { title, poster_path, vote_average, name, vote_count } = movie;
 
   const getStarRating = () => {
     const rating = Math.round(vote_average / 2);
@@ -22,17 +22,15 @@ const MovieCard = ({ movie }) => {
     }
 
     return (
-      <div className="flex items-center mt-auto">
+      <div className="flex items-baseline">
         {stars}
-        <span className="text-gray-500 text-sm ml-2">
-          {Math.round(vote_average * 10) / 10} stars
-        </span>
+        <span className="text-gray-500 text-sm ml-2">{vote_count} votes</span>
       </div>
     );
   };
 
   return (
-    <div className="flex flex-col max-w-xs rounded overflow-hidden shadow-lg bg-white dark:bg-gray-800">
+    <div className="hover:text-[#6C63FF] flex flex-col max-w-xs rounded overflow-hidden shadow-lg bg-gray-800 hover:bg-gray-700 h-full">
       <div className="h-[300px] w-auto overflow-hidden">
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -42,11 +40,9 @@ const MovieCard = ({ movie }) => {
       </div>
 
       <div className="px-4 py-2">
-        <div className="font-bold text-xl mb-2 text-gray-800 dark:text-white">
-          {title || name}
-        </div>
-        {getStarRating()}
+        <div className="font-bold text-xl mb-2 text-white">{title || name}</div>
       </div>
+      <div className="px-4 py-2 mt-auto">{getStarRating()}</div>
     </div>
   );
 };
